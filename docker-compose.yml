@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:10.1-alpine
+    volumes:
+      - postgresql_data:/data
+
+  web:
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8990
+    ports:
+      - "8990:8990"
+    volumes:
+      - ./src:/app
+    depends_on:
+      - db
+
+volumes:
+  postgresql_data:
