@@ -10,6 +10,3 @@ ADD requirements.txt /app/
 RUN pip install -r /app/requirements.txt
 
 ADD src/ /app/
-
-
-
