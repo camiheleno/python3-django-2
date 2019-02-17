@@ -7,14 +7,29 @@ services:
       - postgresql_data:/data
 
   web:
-    build: .
-    command: python3 manage.py runserver 0.0.0.0:8990 --settings=newproject.settings.local
+    build:
+      context: .
+      dockerfile: DockerfileApp
+    command: python3 manage.py runserver 0.0.0.0:8000 --settings=celero.settings.local
     ports:
-      - "8990:8990"
+      - "8001:8000"
     volumes:
-      - ./src:/app
+      - ./app:/app
     depends_on:
       - db
+
+  api:
+    build:
+      context: .
+      dockerfile: DockerfileApi
+    command: python3 manage.py runserver 0.0.0.0:8000 --settings=celero.settings.local
+    ports:
+      - "8002:8000"
+    volumes:
+      - ./api:/api
+    depends_on:
+      - db
+      - web
 
 volumes:
   postgresql_data:

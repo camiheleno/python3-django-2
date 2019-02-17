@@ -1,0 +1,47 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Celero - Financeiro{% endblock %}</title>
+  {% load static %}
+  {% load staticfiles %}
+  <link rel="stylesheet" type="text/css" href="{% static 'celero/plugins/bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'financial/css/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'financial/css/blue.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'financial/css/spinners.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'financial/css/animate.css' %}">
+
+  {% block extra_head %}{% endblock %}
+</head>
+
+<aside class="left-sidebar">
+    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;">
+        <div class="scroll-sidebar" style="overflow: hidden; width: auto; height: 100%;">
+            <nav class="sidebar-nav">
+                <ul id="sidebarnav" class="in">
+                    <li>
+                        <a href="{% url 'home' %}" aria-expanded="false">
+                            <i class="mdi mdi-view-list"></i>
+                            <span>Listagem</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" aria-expanded="false">
+                            <i class="mdi mdi-cart-plus"></i>
+                            <span>Registrar</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</aside>
+
+<body>
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+</body>
+</html>

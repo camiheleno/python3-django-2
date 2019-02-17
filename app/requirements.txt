@@ -1,0 +1,5 @@
+django==2.0.10
+psycopg2
+django-debug-toolbar
+django-datatables-view
+model_mommy

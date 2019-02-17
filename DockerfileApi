@@ -1,0 +1,12 @@
+FROM python:3.6
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+RUN mkdir -p /api
+
+WORKDIR /api
+
+ADD api/ /api/
+
+RUN pip install -r /api/requirements.txt

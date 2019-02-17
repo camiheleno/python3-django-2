@@ -1,0 +1,20 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Celero{% endblock %}</title>
+  {% load static %}
+  {% load staticfiles %}
+
+  <link rel="stylesheet" type="text/css" href="{% static 'celero/plugins/bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'financial/css/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'financial/css/blue.css' %}">
+</head>
+<body>
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+</body>
+</html>

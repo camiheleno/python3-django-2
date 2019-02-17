@@ -1,0 +1,99 @@
+{% extends 'financial/base.html' %}
+
+{% block title %}Financeiro{% endblock %}
+
+{% load static %}
+{% load i18n %}
+
+{% block extra_head %}
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+    <script src="{% static 'financial/js/datatable.js' %}"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+    <script type="text/javascript">
+        var USERS_LIST_JSON_URL = '{% url "financial_datatable_data" %}';
+        var oLanguages = {
+            oPaginate:{
+                sFirst:'<<',
+                sLast: '>>',
+                sNext: '>',
+                sPrevious: '<'
+            },
+            sInfo:'{% trans "Mostrando _START_ a _END_ de _TOTAL_" %}',
+            sInfoEmpty: '{% trans "" %}',
+            sInfoFiltered: '{% trans "(filtrados de um total de _MAX_ )" %}',
+            sLengthMenu:'{% trans "Mostrar _MENU_ registros" %}',
+            sProcessing: '{% trans "Processando" %}',
+            sZeroRecords: '{% trans "Nenhum registro encontrado" %}'
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+
+<body class="fix-header card-no-border">
+    <div id="main-wrapper">
+        <header class="topbar" style="">
+            <nav class="navbar top-navbar navbar-toggleable-sm navbar-light">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{% url 'home' %}">
+                        <img src="{% static 'financial/images/finance.png' %}" width="50" class="light-logo" alt="homepage">
+                    </a>
+                </div>
+                <div class="navbar-collapse">
+                    <ul class="navbar-nav mr-auto mt-md-0"></ul>
+                    <ul class="navbar-nav my-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="{% static 'financial/images/user.png' %}" alt="user" class="profile-pic m-r-10">{{ user.get_username }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="page-wrapper" style="min-height: 594px;">
+            <div class="container-fluid">
+                <div class="row page-titles">
+                    <div class="col-md-5 col-8 align-self-center">
+                        <h3 class="text-themecolor m-b-0 m-t-0">Financeiro</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                            <li class="breadcrumb-item active">Listagem</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title">Planilha de contas</h4>
+                                <div class="table-responsive">
+                                    <table class="datatable table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Data</th>
+                                                <th>Tipo</th>
+                                                <th>Nome do Registro</th>
+                                                <th>Valor</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer">
+                © 2019 Criado por Camilla Heleno (camiheleno@gmail.com)
+            </footer>
+        </div>
+    </div>
+</body>
+
+{% endblock %}
+
